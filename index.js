@@ -81,6 +81,10 @@ async function app() {
                 await db.updateEmployeeRole( new_employee_role_id, employee_to_update_id);
                 break;
 
+                default:
+                runQuestions = false;
+                break;
+
                     async function departmentSelection() {
                         const allDepartments = await db.viewDepartments();
                         const departmentChoices = allDepartments.map((department) => ({
@@ -137,6 +141,8 @@ async function app() {
                     }
         }
     }
+    process.exit();
 }
+
 
 app();
