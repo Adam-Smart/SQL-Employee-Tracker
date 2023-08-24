@@ -18,4 +18,9 @@ const viewRoles = async () => {
     return rows;
 };
 
-module.exports = {viewDepartments, viewRoles}
+const viewEmployees = async () => {
+    const [rows, fields] = await connection.execute('SELECT * FROM employee');
+    return rows;
+};
+
+module.exports = {viewDepartments, viewRoles, viewEmployees}

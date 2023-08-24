@@ -15,10 +15,15 @@ async function app() {
                 const departments = await db.viewDepartments();
                 console.table(departments);
                 break;
-                
+
                 case 'View all the Roles':
                 const roles = await db.viewRoles();
                 console.table(roles);
+                break;
+
+                case 'View all Employees':
+                const employees = await db.viewEmployees();
+                console.table(employees);
                 break;
         }
     }
