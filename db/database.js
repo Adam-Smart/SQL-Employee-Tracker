@@ -44,4 +44,12 @@ const addEmployee = async (firstName, lastName, role_id, manager_id) => {
     return result;
 };
 
-module.exports = {viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee}
+const updateEmployeeRole = async (role_id, employee_id) => {
+    const result = await connection.execute(
+        'UPDATE employee SET role_id = ? WHERE id = ?', [role_id, employee_id]
+    );
+    return result;
+};
+
+
+module.exports = {viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole}

@@ -75,6 +75,12 @@ async function app() {
         
                         break;
 
+                        case 'Update an Employee role':
+                const employee_to_update_id = await employeeSelection('Select employee: ');
+                const new_employee_role_id = await roleSelection();
+                await db.updateEmployeeRole( new_employee_role_id, employee_to_update_id);
+                break;
+
                     async function departmentSelection() {
                         const allDepartments = await db.viewDepartments();
                         const departmentChoices = allDepartments.map((department) => ({
