@@ -14,6 +14,7 @@ async function app() {
             case 'View all of Departments':
                 const departments = await db.viewDepartments();
                 console.table(departments);
+                break;
         }
     }
 }

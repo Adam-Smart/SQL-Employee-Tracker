@@ -13,4 +13,4 @@ const viewDepartments = async () => {
     return rows;
 };
 
-module.exports = viewDepartments
+module.exports = {viewDepartments}
