@@ -25,6 +25,16 @@ async function app() {
                 const employees = await db.viewEmployees();
                 console.table(employees);
                 break;
+
+                case 'Add a Department':
+                const { name } = await inquirer.prompt(
+                    { type: 'input', 
+                      name: 'name', 
+                      message: 'Enter the department name:' 
+                    });
+                    
+                await db.addDepartment(name);
+                break;
         }
     }
 }

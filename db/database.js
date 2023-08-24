@@ -23,4 +23,11 @@ const viewEmployees = async () => {
     return rows;
 };
 
-module.exports = {viewDepartments, viewRoles, viewEmployees}
+const addDepartment = async (department_name) => {
+    const result = await connection.execute(
+        'INSERT INTO department (department_name) VALUES (?)', [department_name]
+    );
+    return result;
+};
+
+module.exports = {viewDepartments, viewRoles, viewEmployees, addDepartment}
