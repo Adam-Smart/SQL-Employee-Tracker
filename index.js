@@ -35,6 +35,40 @@ async function app() {
                     
                 await db.addDepartment(name);
                 break;
+
+                case 'Add a Role':
+                    const roleData = await inquirer.prompt([
+                        { type: 'input',
+                          name: 'title', 
+                          message: 'Enter a role title:' 
+                        },
+    
+                        { type: 'input', 
+                          name: 'salary', 
+                          message: 'Enter the salary for the role:' 
+                        },
+                        
+                    ]);
+                    const department_id = await departmentSelection();
+                    await db.addRole(roleData.title, roleData.salary, department_id);
+                    break;
+
+                    async function departmentSelection() {
+                        const allDepartments = await db.viewDepartments();
+                        const departmentChoices = allDepartments.map((department) => ({
+                            name: department.department_name,
+                            value: department.id,
+                        }));
+                    
+                        const { department_id } = await inquirer.prompt({
+                            type: 'list',
+                            name: 'department_id',
+                            message: 'Select the department:',
+                            choices: departmentChoices,
+                        });
+                    
+                        return department_id;
+                    }
         }
     }
 }
