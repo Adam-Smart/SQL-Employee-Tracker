@@ -37,4 +37,11 @@ const addRole = async (role_title, salary, department_id) => {
     return result;
 };
 
-module.exports = {viewDepartments, viewRoles, viewEmployees, addDepartment, addRole}
+const addEmployee = async (firstName, lastName, role_id, manager_id) => {
+    const result = await connection.execute(
+        'INSERT INTO employee (firstName, lastName, role_id, manager_id) VALUES (?, ?, ?, ?)', [firstName, lastName, role_id, manager_id]
+    );
+    return result;
+};
+
+module.exports = {viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee}

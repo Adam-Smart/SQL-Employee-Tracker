@@ -53,6 +53,28 @@ async function app() {
                     await db.addRole(roleData.title, roleData.salary, department_id);
                     break;
 
+                    case 'Add a Employee':
+                        const employeeData = await inquirer.prompt([
+                            { 
+                             type: 'input',
+                             name: 'firstName', 
+                             message: 'Add first name:' 
+                            },
+        
+                            {
+                              type: 'input',
+                              name: 'lastName',
+                              message: 'Add last name:' 
+                            },
+                        ]);
+        
+                        const employee_role_id = await roleSelection();
+                        const manager_id = await employeeSelection('Select a manager: ');
+        
+                        await db.addEmployee(employeeData.firstName, employeeData.lastName, employee_role_id, manager_id);
+        
+                        break;
+
                     async function departmentSelection() {
                         const allDepartments = await db.viewDepartments();
                         const departmentChoices = allDepartments.map((department) => ({
@@ -68,6 +90,44 @@ async function app() {
                         });
                     
                         return department_id;
+
+                        
+                    }
+                    async function roleSelection() {
+                        const allRoles = await db.viewRoles();
+                        const roleChoices = allRoles.map((role) => ({
+                            name: role.role_title,
+                            value: role.id,
+                        }));
+                    
+                        const { role_id } = await inquirer.prompt({
+                            type: 'list',
+                            name: 'role_id',
+                            message: 'Select the role:',
+                            choices: roleChoices,
+                        });
+                    
+                        return role_id;
+                    }
+                    async function employeeSelection(message) {
+                        const allEmployees = await db.viewEmployees();
+                        const employeeChoices =
+                            [
+                                { name: 'None', value: null },
+                                ...allEmployees.map((employee) => ({
+                                    name: employee.firstName + " " + employee.lastName,
+                                    value: employee.id,
+                                })),
+                            ];
+
+                        const { employee_id } = await inquirer.prompt({
+                            type: 'list',
+                            name: 'employee_id',
+                            message: message,
+                            choices: employeeChoices,
+                        });
+                    
+                        return employee_id;
                     }
         }
     }
