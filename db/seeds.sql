@@ -13,11 +13,11 @@ VALUES (1, "Stock Replen", 18000, 1),
        (6, "Runner", 12500, 4);
        
 INSERT INTO employee (id, firstname, lastname, role_id, manager_id)
-VALUES (1, "Tim", "LeClerc", 1, NULL),
+VALUES (1, "Tim", "LeClerc", 1, 2),
        (2, "Flin", "Verstappen", 1, NULL),
-       (3, "Lucy", "Riccardo", 2, NULL),
-       (4, "Harry", "Perez", 2, NULL),
+       (3, "Lucy", "Riccardo", 2, 2),
+       (4, "Harry", "Perez", 2, 2),
        (5, "Charlotte", "Alonso", 3, NULL),
-       (6, "Joel", "Bottas", 3, NULL),
+       (6, "Joel", "Bottas", 3, 3),
        (7, "Trent", "Russel", 4, NULL),
-       (8, "Toby", "Hamilton", 4, NULL);
+       (8, "Toby", "Hamilton", 5, NULL);
