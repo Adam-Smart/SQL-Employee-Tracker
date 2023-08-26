@@ -6,7 +6,7 @@ async function app() {
     let runQuestions = true;
 
     while (runQuestions) {
-        const { menu } = await inquirer.prompt(questions)
+        const {menu} = await inquirer.prompt(questions)
         
         
 
